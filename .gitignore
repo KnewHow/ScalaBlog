@@ -1,0 +1,15 @@
+target
+project/target
+*/target
+.cache-main
+.classpath
+.project
+.settings
+*/bin
+GPATH
+GTAGS
+GRTAGS
+.idea
+.bloop/
+.metals/
+.DS_Store
