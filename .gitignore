@@ -1,6 +1,7 @@
 target
 project/target
 */target
+/null
 .cache-main
 .classpath
 .project
