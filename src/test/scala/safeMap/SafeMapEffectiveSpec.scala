@@ -9,13 +9,13 @@ import java.util.concurrent._
 import scala.concurrent.ExecutionContext
 import org.scalatest.FlatSpec
 import cats.effect.concurrent.Ref
+import scala.concurrent.ExecutionContext.global
 
 class SafeMapEffectiveSpec extends FlatSpec {
   "test safe map put and get" should "success" in {
     implicit val sio = Sync[IO].delay(println("Hello world!"))
     val safeMap:IO[SafeMap[IO,String,String]] = SafeMap.empty[IO,String,String]
-    val ex = Executors.newFixedThreadPool(10);
-    implicit val ctx = IO.contextShift(ExecutionContext.fromExecutor(ex))
+    implicit val ctx = IO.contextShift(global)
     val seq = Seq.iterate(0,1000000)(_ + 1).map(_.toString)
     val currentMap = new ConcurrentHashMap[String,String]()
     val r1 = seq.map{r =>
